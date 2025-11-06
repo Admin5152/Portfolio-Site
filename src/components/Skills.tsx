@@ -75,7 +75,7 @@ const Skills = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-              className="bg-card p-6 rounded-lg glow-border"
+              className="pro-card p-8"
             >
               <h3 className="text-2xl font-orbitron font-bold mb-6 text-primary">
                 {category.category}
@@ -89,22 +89,14 @@ const Skills = () => {
                       <span className="text-primary font-orbitron">{skill.level}%</span>
                     </div>
                     
-                    <div className="h-2 bg-muted rounded-full overflow-hidden">
+                    <div className="h-2 bg-muted rounded-full overflow-hidden border border-border">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
                         viewport={{ once: true }}
-                        transition={{ duration: 1, delay: skillIndex * 0.1 }}
-                        className="h-full bg-gradient-to-r from-primary via-secondary to-accent rounded-full relative"
-                      >
-                        <motion.div
-                          animate={{
-                            opacity: [0.5, 1, 0.5],
-                          }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                        />
-                      </motion.div>
+                        transition={{ duration: 1.2, delay: skillIndex * 0.1, ease: "easeOut" }}
+                        className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+                      />
                     </div>
                   </div>
                 ))}
@@ -129,12 +121,12 @@ const Skills = () => {
           ].map((stat, index) => (
             <div
               key={index}
-              className="text-center bg-card p-6 rounded-lg glow-border hover-scale"
+              className="text-center pro-card p-8 hover-scale"
             >
-              <div className="text-4xl font-orbitron font-bold text-primary mb-2">
+              <div className="text-3xl font-orbitron font-bold text-primary mb-2">
                 {stat.value}
               </div>
-              <div className="text-muted-foreground">{stat.label}</div>
+              <div className="text-sm text-muted-foreground uppercase tracking-wider">{stat.label}</div>
             </div>
           ))}
         </motion.div>

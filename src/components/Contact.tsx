@@ -79,12 +79,12 @@ const Contact = () => {
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
                 const content = (
-                  <div className="flex items-start gap-4 bg-card p-4 rounded-lg glow-border hover-scale group cursor-pointer">
-                    <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                      <Icon className="w-6 h-6 text-primary" />
+                  <div className="flex items-start gap-4 pro-card p-5 hover-scale group cursor-pointer">
+                    <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/15 transition-colors border border-primary/20">
+                      <Icon className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <div className="text-sm text-muted-foreground mb-1">{info.label}</div>
+                      <div className="text-xs text-muted-foreground mb-1 uppercase tracking-wider">{info.label}</div>
                       <div className="text-foreground font-medium">{info.value}</div>
                     </div>
                   </div>
@@ -100,16 +100,16 @@ const Contact = () => {
               })}
             </div>
 
-            <div className="bg-card p-6 rounded-lg glow-border">
-              <h4 className="text-xl font-orbitron font-semibold mb-4 text-foreground">
-                Let's Connect
+            <div className="pro-card p-6">
+              <h4 className="text-lg font-orbitron font-semibold mb-3 text-foreground">
+                Professional Collaboration
               </h4>
-              <p className="text-muted-foreground mb-4">
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+              <p className="text-muted-foreground text-sm mb-3 leading-relaxed">
+                Open to discussing innovative projects, technical partnerships, and development opportunities.
               </p>
-              <p className="text-foreground">
-                Whether you need a full-stack developer, AI integration expert, or mobile app creator - 
-                <span className="text-primary font-semibold"> I'm ready to bring your ideas to life</span>.
+              <p className="text-foreground text-sm leading-relaxed">
+                Specializing in full-stack development, AI integration, and mobile solutions.
+                <span className="text-primary font-semibold"> Let's build something exceptional together</span>.
               </p>
             </div>
           </motion.div>
@@ -121,7 +121,7 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <form onSubmit={handleSubmit} className="bg-card p-8 rounded-lg glow-border space-y-6">
+            <form onSubmit={handleSubmit} className="pro-card p-8 space-y-6">
               <div>
                 <label className="block text-sm font-medium mb-2 text-foreground">
                   Name
@@ -167,9 +167,9 @@ const Contact = () => {
               <Button
                 type="submit"
                 size="lg"
-                className="w-full font-orbitron bg-primary hover:bg-primary-glow text-primary-foreground glow-border"
+                className="w-full font-orbitron bg-primary hover:bg-primary-glow text-primary-foreground"
               >
-                <Send className="w-5 h-5 mr-2" />
+                <Send className="w-4 h-4 mr-2" />
                 Send Message
               </Button>
             </form>

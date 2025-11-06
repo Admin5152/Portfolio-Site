@@ -9,26 +9,29 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden grid-background">
-      {/* Animated Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Subtle Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
       
-      {/* Glowing Orbs */}
+      {/* Professional Grid Pattern */}
+      <div className="absolute inset-0 grid-background opacity-50" />
+      
+      {/* Subtle Ambient Lights */}
       <motion.div
-        className="absolute top-20 left-20 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
+        className="absolute top-20 left-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
         animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
+          scale: [1, 1.1, 1],
+          opacity: [0.1, 0.2, 0.1],
         }}
-        transition={{ duration: 8, repeat: Infinity }}
+        transition={{ duration: 10, repeat: Infinity }}
       />
       <motion.div
-        className="absolute bottom-20 right-20 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"
+        className="absolute bottom-20 right-20 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"
         animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.5, 0.3, 0.5],
+          scale: [1.1, 1, 1.1],
+          opacity: [0.2, 0.1, 0.2],
         }}
-        transition={{ duration: 8, repeat: Infinity }}
+        transition={{ duration: 10, repeat: Infinity }}
       />
 
       <div className="relative z-10 container mx-auto px-4 text-center">
@@ -38,38 +41,30 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="inline-block mb-4 px-6 py-2 rounded-full border border-primary/50 glow-border"
+            className="inline-block mb-6 px-6 py-2 rounded-full border border-primary/30 bg-primary/5"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring" }}
           >
-            <span className="text-primary font-orbitron text-sm tracking-wider">
-              SYSTEM ONLINE
+            <span className="text-primary font-orbitron text-sm tracking-widest uppercase">
+              Computer Science • Developer • Innovator
             </span>
           </motion.div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-orbitron font-bold mb-6 neon-text">
-            Hey, I'm <span className="gradient-text">SCAM</span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-orbitron font-bold mb-6">
+            <span className="text-foreground">Seth Charles</span><br/>
+            <span className="gradient-text">Agyei Mensah</span>
           </h1>
 
           <motion.p
-            className="text-xl md:text-2xl lg:text-3xl mb-4 text-foreground/90"
+            className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            Seth Charles Agyei Mensah
-          </motion.p>
-
-          <motion.p
-            className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-          >
-            Computer Science Student @ KNUST | Full-Stack Developer | AI Enthusiast
+            Full-Stack Developer & CS Student at <span className="text-primary font-semibold">KNUST</span>
             <br />
-            <span className="text-primary">Building the future, one line of code at a time</span>
+            <span className="text-foreground/70">Specializing in AI Integration, Mobile Development & Web Solutions</span>
           </motion.p>
 
           <motion.div
@@ -80,18 +75,18 @@ const Hero = () => {
           >
             <Button
               size="lg"
-              className="font-orbitron bg-primary hover:bg-primary-glow text-primary-foreground glow-border hover-scale"
+              className="font-orbitron bg-primary hover:bg-primary-glow text-primary-foreground hover-scale"
               onClick={() => scrollToSection("projects")}
             >
-              View Projects
+              View Portfolio
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="font-orbitron border-primary text-primary hover:bg-primary hover:text-primary-foreground glow-border hover-scale"
+              className="font-orbitron border-primary/50 text-foreground hover:bg-primary/10 hover:border-primary hover-scale"
               onClick={() => scrollToSection("contact")}
             >
-              Get In Touch
+              Contact Me
             </Button>
           </motion.div>
 

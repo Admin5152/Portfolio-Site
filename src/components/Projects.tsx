@@ -91,16 +91,21 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative"
+              className="group"
             >
-              <div className={`bg-gradient-to-br ${project.gradient} p-6 rounded-lg glow-border hover-scale h-full flex flex-col`}>
-                <div className="text-5xl mb-4">{project.icon}</div>
+              <div className="pro-card p-6 h-full flex flex-col hover-scale">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="text-4xl">{project.icon}</div>
+                  <div className={`px-3 py-1 rounded-full bg-gradient-to-r ${project.gradient} text-xs font-orbitron`}>
+                    Featured
+                  </div>
+                </div>
                 
-                <h3 className="text-2xl font-orbitron font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
+                <h3 className="text-xl font-orbitron font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
                 
-                <p className="text-muted-foreground mb-4 flex-grow">
+                <p className="text-muted-foreground mb-4 flex-grow text-sm leading-relaxed">
                   {project.description}
                 </p>
                 
@@ -108,28 +113,28 @@ const Projects = () => {
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 text-xs font-orbitron bg-primary/10 text-primary rounded-full border border-primary/30"
+                      className="px-2.5 py-1 text-xs bg-muted text-foreground rounded border border-border"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
                 
-                <div className="flex gap-3">
+                <div className="flex gap-2">
                   <Button
                     size="sm"
                     variant="outline"
-                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                    className="flex-1 text-xs border-border hover:border-primary hover:text-primary"
                   >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Demo
+                    <ExternalLink className="w-3 h-3 mr-1" />
+                    View
                   </Button>
                   <Button
                     size="sm"
                     variant="outline"
-                    className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground"
+                    className="flex-1 text-xs border-border hover:border-primary hover:text-primary"
                   >
-                    <Github className="w-4 h-4 mr-2" />
+                    <Github className="w-3 h-3 mr-1" />
                     Code
                   </Button>
                 </div>

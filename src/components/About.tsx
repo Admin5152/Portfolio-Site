@@ -78,7 +78,7 @@ const About = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-card p-6 rounded-lg glow-border hover-scale cursor-pointer group"
+                  className="pro-card p-6 hover-scale cursor-pointer group"
                 >
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">

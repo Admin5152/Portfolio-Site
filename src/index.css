@@ -8,58 +8,59 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Futuristic Dark Theme - JARVIS/Tron Inspired */
-    --background: 220 25% 5%;
-    --foreground: 180 100% 90%;
+    /* Professional Tech Theme */
+    --background: 222 20% 6%;
+    --foreground: 210 40% 98%;
 
-    --card: 220 20% 8%;
-    --card-foreground: 180 100% 90%;
+    --card: 222 18% 9%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 220 25% 6%;
-    --popover-foreground: 180 100% 90%;
+    --popover: 222 18% 9%;
+    --popover-foreground: 210 40% 98%;
 
-    /* Neon Cyan Primary */
-    --primary: 180 100% 50%;
-    --primary-foreground: 220 25% 5%;
-    --primary-glow: 180 100% 60%;
+    /* Refined Blue Primary */
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 20% 6%;
+    --primary-glow: 217 91% 70%;
 
-    /* Electric Blue Secondary */
-    --secondary: 200 100% 55%;
-    --secondary-foreground: 220 25% 5%;
+    /* Professional Purple Secondary */
+    --secondary: 262 83% 58%;
+    --secondary-foreground: 222 20% 6%;
 
-    /* Muted Dark Tones */
-    --muted: 220 15% 15%;
-    --muted-foreground: 180 20% 60%;
+    /* Muted Professional Tones */
+    --muted: 220 15% 20%;
+    --muted-foreground: 215 15% 65%;
 
-    /* Red Accent for Danger/Highlights */
-    --accent: 0 100% 60%;
-    --accent-foreground: 220 25% 5%;
+    /* Subtle Accent */
+    --accent: 173 80% 40%;
+    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 180 100% 90%;
+    --destructive-foreground: 210 40% 98%;
 
-    /* Borders with Glow */
-    --border: 180 80% 25%;
-    --input: 220 20% 12%;
-    --ring: 180 100% 50%;
+    /* Professional Borders */
+    --border: 217 20% 18%;
+    --input: 220 18% 12%;
+    --ring: 217 91% 60%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
     /* Custom Design Tokens */
-    --grid-color: 180 100% 50%;
-    --grid-opacity: 0.1;
+    --grid-color: 217 91% 60%;
+    --grid-opacity: 0.03;
     
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(180 100% 50% / 0.2), hsl(200 100% 55% / 0.1));
-    --gradient-glow: radial-gradient(circle, hsl(180 100% 50% / 0.3) 0%, transparent 70%);
+    /* Subtle Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60% / 0.1), hsl(262 83% 58% / 0.05));
+    --gradient-glow: radial-gradient(circle, hsl(217 91% 60% / 0.15) 0%, transparent 70%);
     
-    /* Shadows */
-    --shadow-neon: 0 0 20px hsl(180 100% 50% / 0.5), 0 0 40px hsl(180 100% 50% / 0.3);
-    --shadow-neon-strong: 0 0 30px hsl(180 100% 50% / 0.7), 0 0 60px hsl(180 100% 50% / 0.5);
+    /* Professional Shadows */
+    --shadow-soft: 0 2px 8px hsl(217 91% 60% / 0.15);
+    --shadow-medium: 0 4px 16px hsl(217 91% 60% / 0.2);
+    --shadow-large: 0 8px 32px hsl(217 91% 60% / 0.25);
     
-    /* Animations */
+    /* Smooth Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-glow: all 0.5s ease;
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 }
 
@@ -99,58 +100,51 @@ All colors MUST be HSL.
 }
 
 @layer components {
-  /* Animated Grid Background */
+  /* Subtle Grid Background */
   .grid-background {
     background-image: 
       linear-gradient(hsl(var(--grid-color) / var(--grid-opacity)) 1px, transparent 1px),
       linear-gradient(90deg, hsl(var(--grid-color) / var(--grid-opacity)) 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: grid-move 20s linear infinite;
+    background-size: 80px 80px;
   }
 
-  @keyframes grid-move {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 50px 50px;
-    }
-  }
-
-  /* Neon Glow Text */
+  /* Professional Text Glow */
   .neon-text {
     text-shadow: 
-      0 0 10px hsl(var(--primary) / 0.8),
-      0 0 20px hsl(var(--primary) / 0.6),
-      0 0 30px hsl(var(--primary) / 0.4);
+      0 0 20px hsl(var(--primary) / 0.3),
+      0 0 40px hsl(var(--primary) / 0.2);
   }
 
-  /* Glowing Border */
+  /* Refined Border */
   .glow-border {
-    border: 1px solid hsl(var(--primary) / 0.5);
-    box-shadow: 
-      0 0 10px hsl(var(--primary) / 0.3),
-      inset 0 0 10px hsl(var(--primary) / 0.1);
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-smooth);
   }
 
-  /* Hover Scale Effect */
+  .glow-border:hover {
+    border-color: hsl(var(--primary) / 0.5);
+    box-shadow: var(--shadow-medium);
+  }
+
+  /* Smooth Hover Effect */
   .hover-scale {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: var(--transition-smooth);
   }
 
   .hover-scale:hover {
-    transform: scale(1.05);
-    box-shadow: var(--shadow-neon);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-large);
   }
 
-  /* Animated Gradient Text */
+  /* Professional Gradient Text */
   .gradient-text {
-    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent)));
+    background: linear-gradient(120deg, hsl(var(--primary)), hsl(var(--secondary)));
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: gradient-shift 3s ease infinite;
+    animation: gradient-shift 4s ease infinite;
   }
 
   @keyframes gradient-shift {
@@ -162,17 +156,30 @@ All colors MUST be HSL.
     }
   }
 
-  /* Pulse Animation */
+  /* Subtle Pulse */
   .pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
+    animation: pulse-glow 3s ease-in-out infinite;
   }
 
   @keyframes pulse-glow {
     0%, 100% {
-      box-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+      box-shadow: var(--shadow-soft);
     }
     50% {
-      box-shadow: 0 0 30px hsl(var(--primary) / 0.8);
+      box-shadow: var(--shadow-medium);
     }
+  }
+
+  /* Professional Card */
+  .pro-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    transition: var(--transition-smooth);
+  }
+
+  .pro-card:hover {
+    border-color: hsl(var(--primary) / 0.4);
+    box-shadow: var(--shadow-medium);
   }
 }
