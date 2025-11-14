@@ -20,7 +20,7 @@ const Footer = () => {
           {/* Social Links */}
           <div className="flex gap-6">
             <a
-              href="https://github.com/scam"
+              href="https://github.com/Admin5152"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-colors"
@@ -29,7 +29,7 @@ const Footer = () => {
               <Github className="w-5 h-5" />
             </a>
             <a
-              href="https://linkedin.com/in/scam"
+              href="https://linkedin.com/in/sethcharlesagyeimensah5152"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-colors"
@@ -38,7 +38,7 @@ const Footer = () => {
               <Linkedin className="w-5 h-5" />
             </a>
             <a
-              href="mailto:scam@knust.edu.gh"
+              href="mailto:sethagyeimensah2@gmail.com"
               className="text-foreground hover:text-primary transition-colors"
               aria-label="Email"
             >
@@ -49,7 +49,7 @@ const Footer = () => {
           {/* Copyright */}
           <div className="text-center md:text-right text-sm text-muted-foreground">
             <p className="flex items-center gap-2 justify-center md:justify-end">
-              Made with <Heart className="w-4 h-4 text-accent fill-accent" /> by SCAM
+              {/* Made with <Heart className="w-4 h-4 text-accent fill-accent" /> by SCAM */}
             </p>
             <p className="mt-1">© {currentYear} Seth Charles Agyei Mensah</p>
           </div>

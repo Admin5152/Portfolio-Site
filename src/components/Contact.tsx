@@ -25,8 +25,8 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "scam@knust.edu.gh",
-      link: "mailto:scam@knust.edu.gh"
+      value: "sethagyeimensah2@gmail.com",
+      link: "https://mail.google.com/mail/u/0/#inbox"
     },
     {
       icon: MapPin,
@@ -37,8 +37,8 @@ const Contact = () => {
     {
       icon: Phone,
       label: "Phone",
-      value: "+233 XX XXX XXXX",
-      link: "tel:+233XXXXXXXXX"
+      value: "+233 531771042",
+      link: "tel:+233 531771042"
     }
   ];
 

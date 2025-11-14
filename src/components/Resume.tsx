@@ -88,36 +88,17 @@ const Resume = () => {
             
             <div className="max-w-2xl mx-auto mb-8">
               <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                <strong className="text-foreground">Computer Science Student at KNUST</strong> with proven expertise in 
-                full-stack development, AI integration, and mobile applications. Demonstrated track record of delivering 
-                15+ production-ready projects using modern technologies including React Native, Django, Firebase, and AI APIs.
+                <strong className="text-foreground">Computer Science Student at KNUST</strong> with proven experience in 
+                full-stack development, mobile apps, AI integration, and real-world software solutions.
               </p>
-              
-              <div className="grid md:grid-cols-2 gap-4 text-left text-sm">
-                <div className="space-y-2">
-                  <h4 className="font-orbitron text-primary font-semibold mb-3">Core Competencies:</h4>
-                  <ul className="space-y-1 text-muted-foreground">
-                    <li>✓ Full-Stack Web & Mobile Development</li>
-                    <li>✓ AI/ML Integration (Google Gemini API)</li>
-                    <li>✓ Real-time Location & Mapping Systems</li>
-                    <li>✓ E-commerce Platform Development</li>
-                  </ul>
-                </div>
-                <div className="space-y-2">
-                  <h4 className="font-orbitron text-primary font-semibold mb-3">Technical Proficiency:</h4>
-                  <ul className="space-y-1 text-muted-foreground">
-                    <li>✓ React Native, Django, Spring Boot</li>
-                    <li>✓ Firebase, Appwrite, PostgreSQL</li>
-                    <li>✓ Java, Python, JavaScript, Assembly</li>
-                    <li>✓ Git, GitHub, Agile Development</li>
-                  </ul>
-                </div>
-              </div>
             </div>
 
-            {/* CTA Buttons */}
+            {/* CTA BUTTONS */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a href="/SCAM_Resume.pdf" download="SCAM_Resume.pdf">
+              <a 
+                href="/SCAM_Resume.pdf"
+                download="Seth_Charles_Agyei_Mensah_Resume.pdf"
+              >
                 <Button
                   size="lg"
                   className="font-orbitron bg-primary hover:bg-primary-glow text-primary-foreground min-w-[200px]"
@@ -127,7 +108,11 @@ const Resume = () => {
                 </Button>
               </a>
               
-              <a href="/SCAM_Resume.pdf" target="_blank" rel="noopener noreferrer">
+              <a 
+                href="/SETH_CHARLES_AGYEI_MENSAH_Resume.docx"
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
                 <Button
                   size="lg"
                   variant="outline"
@@ -138,37 +123,13 @@ const Resume = () => {
                 </Button>
               </a>
             </div>
-            
+
             <div className="mt-8 pt-6 border-t border-border">
               <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">
-                Available for Full-Time Opportunities • Immediate Start
+                Available for Full-Time Roles • Updated 2025
               </p>
-              <p className="text-xs text-muted-foreground">
-                PDF Format • Last Updated November 2025 • ATS-Friendly
-              </p>
+              <p className="text-xs text-muted-foreground">DOCX Format • ATS Friendly</p>
             </div>
-          </motion.div>
-
-          {/* Trust Indicators */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground"
-          >
-            <span className="flex items-center gap-2">
-              <Award className="w-4 h-4 text-primary" />
-              KNUST Student
-            </span>
-            <span className="flex items-center gap-2">
-              <Code className="w-4 h-4 text-primary" />
-              15+ Portfolio Projects
-            </span>
-            <span className="flex items-center gap-2">
-              <Briefcase className="w-4 h-4 text-primary" />
-              Open to Opportunities
-            </span>
           </motion.div>
         </motion.div>
       </div>

@@ -6,56 +6,70 @@ const Projects = () => {
   const projects = [
     {
       title: "Tracker App",
-      description: "Real-time family and friends tracking application with live location sharing, weather notifications, and emergency contact features. Built for seamless coordination and safety.",
+      description: "Real-time family and friends tracking application with live location sharing, weather notifications, and emergency contact features.",
       tech: ["React Native", "Firebase", "Google Maps API", "AsyncStorage"],
       gradient: "from-primary/20 to-secondary/20",
-      icon: "🗺️"
+      icon: "🗺️",
+      view: "https://www.linkedin.com/posts/sethcharlesagyeimensah5152_reactnative-mobiledevelopment-innovation-ugcPost-7390686995758387200-2dLk?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEzHM-gBiFEY9jVBc7Rlse9w-3uluhQQtOw",
+      code: "https://github.com/Admin5152/TRACKER-78.git"
     },
     {
       title: "JARVIS Chatbot",
-      description: "AI assistant inspired by Tony Stark's JARVIS with futuristic interface. Powered by Google Gemini Pro API for intelligent conversations and task automation.",
+      description: "AI assistant inspired by Tony Stark's JARVIS with futuristic interface, powered by Google Gemini Pro API.",
       tech: ["React Native", "Google Gemini API", "AI/ML", "Expo"],
       gradient: "from-secondary/20 to-accent/20",
-      icon: "🤖"
+      icon: "🤖",
+      view: "https://your-jarvis-link.com",
+      code: "https://github.com/your-github/jarvis-chatbot"
     },
     {
       title: "Hermes Store",
-      description: "Full-featured e-commerce platform with shopping cart, checkout system, order tracking with Google Maps, Firebase authentication, and dark mode support.",
+      description: "Full-featured e-commerce platform with cart, checkout, maps tracking, Firebase auth, and dark mode.",
       tech: ["Django", "Firebase", "Google Maps", "HTML/CSS"],
       gradient: "from-accent/20 to-primary/20",
-      icon: "🛍️"
+      icon: "🛍️",
+      view: "https://your-hermes-store-link.com",
+      code: "https://github.com/your-github/hermes-store"
     },
     {
       title: "RecycleMate",
-      description: "Eco-friendly AI app with image recognition for waste identification, local recycling information, sustainability tips, and personalized daily advice for environmental impact.",
+      description: "Eco-friendly AI app with image recognition for waste sorting, recycling info, and sustainability tips.",
       tech: ["React Native", "AI Vision", "Firebase", "Gemini API"],
       gradient: "from-primary/20 to-accent/20",
-      icon: "♻️"
+      icon: "♻️",
+      view: "https://admin5152.github.io/Recycling-guide-website./",
+      code: "https://github.com/Admin5152/Recruitment-System.git"
     },
     {
       title: "SYSTA SYSTA",
-      description: "Sleek black and white fashion e-commerce website with modern minimalist design, showcasing clothing collections with elegant product displays.",
+      description: "Minimalist black and white fashion e-commerce website showcasing clothing collections.",
       tech: ["React", "CSS", "Responsive Design"],
       gradient: "from-secondary/20 to-primary/20",
-      icon: "👔"
+      icon: "👔",
+      view: "https://admin5152.github.io/systa-style-shop/",
+      code: "https://github.com/Admin5152/systa-style-shop.git"
     },
     {
       title: "Amanabi Stock Tracker",
-      description: "Financial dashboard for real-time stock monitoring and analysis. Hosted on GitHub Pages with interactive charts and market insights.",
+      description: "Financial dashboard for real-time stock analysis with interactive charts.",
       tech: ["React", "Vite", "Chart.js", "GitHub Pages"],
       gradient: "from-accent/20 to-secondary/20",
-      icon: "📈"
+      icon: "📈",
+      view: "https://admin5152.github.io/amanabi-stock-tracker/",
+      code: "https://github.com/Admin5152/amanabi-stock-tracker"
     },
-    {
-      title: "Java Sales Analyzer",
-      description: "Business intelligence tool comparing Shop A and Shop B sales performance with monthly and quarterly analytics using advanced data structures.",
-      tech: ["Java", "Data Analysis", "Algorithms"],
-      gradient: "from-primary/20 to-secondary/20",
-      icon: "💼"
-    },
+    // {
+    //   title: "Java Sales Analyzer",
+    //   description: "Business analytics tool comparing sales trends with monthly and quarterly insights.",
+    //   tech: ["Java", "Data Analysis", "Algorithms"],
+    //   gradient: "from-primary/20 to-secondary/20",
+    //   icon: "💼",
+    //   view: "https://your-sales-analyzer-link.com",
+    //   code: "https://github.com/your-github/sales-analyzer"
+    // },
     {
       title: "Assembly Number Game",
-      description: "Advanced number guessing game with multiple difficulty levels, intelligent feedback system, and replay functionality. Built in x86-64 Assembly.",
+      description: "Advanced x86-64 assembly guessing game with dynamic difficulty and replay system.",
       tech: ["Assembly x86-64", "System Programming"],
       gradient: "from-secondary/20 to-accent/20",
       icon: "🎮"
@@ -79,7 +93,7 @@ const Projects = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary via-secondary to-accent mx-auto mb-4" />
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            A collection of my best work showcasing full-stack development, AI integration, and innovative solutions
+            A collection of my best work showcasing full-stack development, AI integration, and innovative solutions.
           </p>
         </motion.div>
 
@@ -121,23 +135,29 @@ const Projects = () => {
                 </div>
                 
                 <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1 text-xs border-border hover:border-primary hover:text-primary"
-                  >
-                    <ExternalLink className="w-3 h-3 mr-1" />
-                    View
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1 text-xs border-border hover:border-primary hover:text-primary"
-                  >
-                    <Github className="w-3 h-3 mr-1" />
-                    Code
-                  </Button>
+                  <a href={project.view} target="_blank" rel="noopener noreferrer" className="flex-1">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="w-full text-xs border-border hover:border-primary hover:text-primary"
+                    >
+                      <ExternalLink className="w-3 h-3 mr-1" />
+                      View
+                    </Button>
+                  </a>
+
+                  <a href={project.code} target="_blank" rel="noopener noreferrer" className="flex-1">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="w-full text-xs border-border hover:border-primary hover:text-primary"
+                    >
+                      <Github className="w-3 h-3 mr-1" />
+                      Code
+                    </Button>
+                  </a>
                 </div>
+
               </div>
             </motion.div>
           ))}
