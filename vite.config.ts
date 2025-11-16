@@ -3,17 +3,39 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-    base: "/Portfolio-Site/",   // <-- MUST MATCH EXACT REPO NAME EXACTLY
-    server: {
+  // 🔥 EXACT behavior from your working project
+  base: mode === "production" ? "/Portfolio-Site/" : "/",
+
+  server: {
     host: "::",
     port: 8080,
+    strictPort: true,
+    open: true,
   },
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+
+  plugins: [
+    react(),
+    mode === "development" && componentTagger(),
+  ].filter(Boolean),
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+
+  build: {
+    outDir: "dist",
+    emptyOutDir: true,
+  },
+
+  preview: {
+    port: 8080,
+    strictPort: true,
+  },
+
+  optimizeDeps: {
+    include: ["@radix-ui/react-dialog"],
   },
 }));
