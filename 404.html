@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0; URL='/Portfolio-Site/'" />
-    <title>Redirecting…</title>
+    <meta charset="utf-8" />
+    <script>
+      // GitHub Pages fix for React Router
+      sessionStorage.redirect = location.href;
+      window.location.href = "/Portfolio-Site/";
+    </script>
   </head>
-  <body>
-    <p>Redirecting…</p>
-  </body>
+  <body></body>
 </html>
+
