@@ -182,4 +182,27 @@ All colors MUST be HSL.
     border-color: hsl(var(--primary) / 0.4);
     box-shadow: var(--shadow-medium);
   }
+
+  /* Decorative Corner Clips */
+  .clip-corner {
+    clip-path: polygon(100% 0, 100% 100%, 0 0);
+  }
+
+  .clip-corner-bl {
+    clip-path: polygon(0 100%, 100% 100%, 0 0);
+  }
+
+  /* Slow Spin Animation */
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
 }
