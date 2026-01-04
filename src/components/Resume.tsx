@@ -1,137 +1,196 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Download, FileText, Eye, Award, Code, Briefcase, GraduationCap } from "lucide-react";
+import { Download, Eye, GraduationCap, Briefcase, Code, Award } from "lucide-react";
 
 const Resume = () => {
-  const highlights = [
+  const education = [
     {
-      icon: GraduationCap,
-      label: "BSc Computer Science",
-      value: "KNUST"
-    },
-    {
-      icon: Code,
-      label: "Projects Completed",
-      value: "15+"
-    },
-    {
-      icon: Briefcase,
-      label: "Tech Stack",
-      value: "20+"
-    },
-    {
-      icon: Award,
-      label: "Years Experience",
-      value: "3+"
+      period: "2023 - Present",
+      title: "BSc Computer Science",
+      institution: "KNUST, Ghana",
+      description: "Focusing on software engineering, AI/ML, and system design."
     }
   ];
 
+  const experience = [
+    {
+      period: "2022 - Present",
+      title: "Full-Stack Developer",
+      company: "Freelance",
+      description: "Building web and mobile applications for clients worldwide."
+    },
+    {
+      period: "2023",
+      title: "AI Integration Specialist",
+      company: "Personal Projects",
+      description: "Developing AI-powered applications using Google Gemini and ML models."
+    }
+  ];
+
+  const skills = [
+    { name: "React / React Native", level: 90 },
+    { name: "Python / Django", level: 85 },
+    { name: "JavaScript / TypeScript", level: 88 },
+    { name: "Firebase / Supabase", level: 82 },
+    { name: "AI / Machine Learning", level: 75 },
+    { name: "Java", level: 80 },
+  ];
+
   return (
-    <section id="resume" className="py-20 relative overflow-hidden">
-      <div className="absolute inset-0 grid-background opacity-20" />
+    <section id="resume" className="py-20 relative overflow-hidden bg-card/50">
+      <div className="absolute inset-0 grid-background opacity-15" />
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 md:pl-24 lg:pl-32 relative z-10">
+        {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-5xl mx-auto"
+          className="flex items-center gap-4 mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-orbitron font-bold mb-4 neon-text">
-            Professional <span className="gradient-text">Resume</span>
+          <div className="w-12 h-[2px] bg-primary" />
+          <h2 className="text-3xl md:text-4xl font-orbitron font-bold">
+            <span className="gradient-text">RESUME</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary via-secondary to-accent mx-auto mb-4" />
-          <p className="text-muted-foreground text-lg mb-12">
-            Full-stack developer specializing in AI integration, mobile development, and scalable solutions
-          </p>
+          <div className="flex-1 h-[2px] bg-border" />
+        </motion.div>
 
-          {/* Key Highlights Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-            {highlights.map((highlight, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="pro-card p-6 hover-scale"
-              >
-                <highlight.icon className="w-8 h-8 text-primary mx-auto mb-3" />
-                <div className="text-2xl font-orbitron font-bold text-foreground mb-1">
-                  {highlight.value}
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Left Column - Education & Experience */}
+          <div className="space-y-10">
+            {/* Education */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <GraduationCap className="w-5 h-5 text-primary" />
                 </div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">
-                  {highlight.label}
+                <h3 className="text-xl font-orbitron font-semibold text-foreground">Education</h3>
+              </div>
+              
+              <div className="space-y-4">
+                {education.map((item, index) => (
+                  <div key={index} className="pro-card p-5 border-l-4 border-l-primary">
+                    <span className="text-xs text-primary font-orbitron mb-2 block">{item.period}</span>
+                    <h4 className="text-lg font-semibold text-foreground mb-1">{item.title}</h4>
+                    <p className="text-sm text-muted-foreground mb-2">{item.institution}</p>
+                    <p className="text-sm text-muted-foreground">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Experience */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center">
+                  <Briefcase className="w-5 h-5 text-secondary" />
                 </div>
-              </motion.div>
-            ))}
+                <h3 className="text-xl font-orbitron font-semibold text-foreground">Experience</h3>
+              </div>
+              
+              <div className="space-y-4">
+                {experience.map((item, index) => (
+                  <div key={index} className="pro-card p-5 border-l-4 border-l-secondary">
+                    <span className="text-xs text-secondary font-orbitron mb-2 block">{item.period}</span>
+                    <h4 className="text-lg font-semibold text-foreground mb-1">{item.title}</h4>
+                    <p className="text-sm text-muted-foreground mb-2">{item.company}</p>
+                    <p className="text-sm text-muted-foreground">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
 
-          {/* Main Resume Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="pro-card p-8 md:p-12"
-          >
-            <div className="flex justify-center mb-6">
-              <div className="p-6 rounded-full bg-primary/10 border border-primary/20 hover-scale">
-                <FileText className="w-12 h-12 text-primary" />
+          {/* Right Column - Skills & Download */}
+          <div className="space-y-10">
+            {/* Skills */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+                  <Code className="w-5 h-5 text-accent" />
+                </div>
+                <h3 className="text-xl font-orbitron font-semibold text-foreground">Skills</h3>
               </div>
-            </div>
-            
-            <h3 className="text-2xl font-orbitron font-bold mb-4 text-foreground">
-              Seth Charles Agyei Mensah
-            </h3>
-            
-            <div className="max-w-2xl mx-auto mb-8">
-              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                <strong className="text-foreground">Computer Science Student at KNUST</strong> with proven experience in 
-                full-stack development, mobile apps, AI integration, and real-world software solutions.
-              </p>
-            </div>
-
-            {/* CTA BUTTONS */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a 
-                href="/SCAM_Resume.pdf"
-                download="Seth_Charles_Agyei_Mensah_Resume.pdf"
-              >
-                <Button
-                  size="lg"
-                  className="font-orbitron bg-primary hover:bg-primary-glow text-primary-foreground min-w-[200px]"
-                >
-                  <Download className="w-4 h-4 mr-2" />
-                  Download Resume
-                </Button>
-              </a>
               
-              <a 
-                href="/SETH_CHARLES_AGYEI_MENSAH_Resume.docx"
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="font-orbitron border-primary/30 hover:border-primary hover:bg-primary/10 min-w-[200px]"
-                >
-                  <Eye className="w-4 h-4 mr-2" />
-                  View Resume
-                </Button>
-              </a>
-            </div>
+              <div className="pro-card p-6 space-y-5">
+                {skills.map((skill, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <div className="flex justify-between mb-2">
+                      <span className="text-sm font-medium text-foreground">{skill.name}</span>
+                      <span className="text-sm text-primary font-orbitron">{skill.level}%</span>
+                    </div>
+                    <div className="h-2 bg-muted rounded-full overflow-hidden">
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.level}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: index * 0.1 }}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
 
-            <div className="mt-8 pt-6 border-t border-border">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">
-                Available for Full-Time Roles • Updated 2025
+            {/* Download Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="pro-card p-8 text-center"
+            >
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <Award className="w-8 h-8 text-primary" />
+              </div>
+              <h4 className="text-xl font-orbitron font-semibold text-foreground mb-2">
+                Download My Resume
+              </h4>
+              <p className="text-sm text-muted-foreground mb-6">
+                Get a detailed overview of my skills, experience, and achievements.
               </p>
-              <p className="text-xs text-muted-foreground">DOCX Format • ATS Friendly</p>
-            </div>
-          </motion.div>
-        </motion.div>
+              
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <a href="/SCAM_Resume.pdf" download="Seth_Charles_Agyei_Mensah_Resume.pdf">
+                  <Button className="w-full sm:w-auto font-orbitron bg-primary hover:bg-primary-glow text-primary-foreground">
+                    <Download className="w-4 h-4 mr-2" />
+                    Download PDF
+                  </Button>
+                </a>
+                <a href="/SETH_CHARLES_AGYEI_MENSAH_Resume.docx" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="w-full sm:w-auto font-orbitron border-primary/30 hover:border-primary hover:bg-primary/10">
+                    <Eye className="w-4 h-4 mr-2" />
+                    View DOCX
+                  </Button>
+                </a>
+              </div>
+              
+              <p className="text-xs text-muted-foreground mt-4">
+                Available for Full-Time • ATS Friendly
+              </p>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
