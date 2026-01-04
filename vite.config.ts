@@ -4,8 +4,8 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  // 🔥 EXACT behavior from your working project
-  base: mode === "production" ? "/Portfolio-Site/" : "/",
+  // Vercel serves from the domain root
+  base: "/",
 
   server: {
     host: "::",
@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => ({
     strictPort: true,
     open: true,
   },
+
 
   plugins: [
     react(),

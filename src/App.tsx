@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-// ❗ REMOVE BrowserRouter
+// Router is provided in main.tsx
 import { Routes, Route } from "react-router-dom";
 
 import Index from "./pages/Index";
@@ -17,12 +17,10 @@ const App = () => (
       <Toaster />
       <Sonner />
 
-      {/* ❗ NO BrowserRouter here — HashRouter is already in main.tsx */}
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-
     </TooltipProvider>
   </QueryClientProvider>
 );
