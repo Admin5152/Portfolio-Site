@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Download, Eye, GraduationCap, Briefcase, Code, Award } from "lucide-react";
+import { Download, Eye, GraduationCap, Briefcase, Code, Award, ChevronRight } from "lucide-react";
 
 const Resume = () => {
   const education = [
@@ -8,22 +9,25 @@ const Resume = () => {
       period: "2023 - Present",
       title: "BSc Computer Science",
       institution: "KNUST, Ghana",
-      description: "Focusing on software engineering, AI/ML, and system design."
+      description: "Focusing on software engineering, AI/ML, and system design.",
+      link: "/education/knust"
     }
   ];
 
   const experience = [
     {
-      period: "2022 - Present",
-      title: "Full-Stack Developer",
-      company: "Freelance",
-      description: "Building web and mobile applications for clients worldwide."
+      period: "2024",
+      title: "Sales Associate",
+      company: "Biscovs",
+      description: "First professional role — learning responsibility, communication, and work ethic.",
+      link: "/experience/biscovs"
     },
     {
-      period: "2023",
-      title: "AI Integration Specialist",
-      company: "Personal Projects",
-      description: "Developing AI-powered applications using Google Gemini and ML models."
+      period: "2025 - Present",
+      title: "Software Developer",
+      company: "ECL",
+      description: "Building full-stack solutions with React, Django, and AI integration.",
+      link: "/experience/ecl"
     }
   ];
 
@@ -73,12 +77,22 @@ const Resume = () => {
               
               <div className="space-y-4">
                 {education.map((item, index) => (
-                  <div key={index} className="pro-card p-5 border-l-4 border-l-primary">
-                    <span className="text-xs text-primary font-orbitron mb-2 block">{item.period}</span>
-                    <h4 className="text-lg font-semibold text-foreground mb-1">{item.title}</h4>
-                    <p className="text-sm text-muted-foreground mb-2">{item.institution}</p>
-                    <p className="text-sm text-muted-foreground">{item.description}</p>
-                  </div>
+                  <Link key={index} to={item.link}>
+                    <motion.div 
+                      className="pro-card p-5 border-l-4 border-l-primary cursor-pointer group"
+                      whileHover={{ x: 4 }}
+                    >
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <span className="text-xs text-primary font-orbitron mb-2 block">{item.period}</span>
+                          <h4 className="text-lg font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">{item.title}</h4>
+                          <p className="text-sm text-muted-foreground mb-2">{item.institution}</p>
+                          <p className="text-sm text-muted-foreground">{item.description}</p>
+                        </div>
+                        <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 mt-1" />
+                      </div>
+                    </motion.div>
+                  </Link>
                 ))}
               </div>
             </motion.div>
@@ -99,12 +113,22 @@ const Resume = () => {
               
               <div className="space-y-4">
                 {experience.map((item, index) => (
-                  <div key={index} className="pro-card p-5 border-l-4 border-l-secondary">
-                    <span className="text-xs text-secondary font-orbitron mb-2 block">{item.period}</span>
-                    <h4 className="text-lg font-semibold text-foreground mb-1">{item.title}</h4>
-                    <p className="text-sm text-muted-foreground mb-2">{item.company}</p>
-                    <p className="text-sm text-muted-foreground">{item.description}</p>
-                  </div>
+                  <Link key={index} to={item.link}>
+                    <motion.div 
+                      className="pro-card p-5 border-l-4 border-l-secondary cursor-pointer group"
+                      whileHover={{ x: 4 }}
+                    >
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <span className="text-xs text-secondary font-orbitron mb-2 block">{item.period}</span>
+                          <h4 className="text-lg font-semibold text-foreground mb-1 group-hover:text-secondary transition-colors">{item.title}</h4>
+                          <p className="text-sm text-muted-foreground mb-2">{item.company}</p>
+                          <p className="text-sm text-muted-foreground">{item.description}</p>
+                        </div>
+                        <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-secondary transition-colors flex-shrink-0 mt-1" />
+                      </div>
+                    </motion.div>
+                  </Link>
                 ))}
               </div>
             </motion.div>
