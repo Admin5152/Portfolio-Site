@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Code2, Smartphone, Globe, Cpu, Users, Coffee, Award, Briefcase } from "lucide-react";
 
 const About = () => {
   const whatIDo = [
-    { icon: Globe, label: "WEB DESIGN" },
-    { icon: Code2, label: "DEVELOPMENT" },
-    { icon: Smartphone, label: "MOBILE APPS" },
-    { icon: Cpu, label: "AI INTEGRATION" },
+    { icon: Globe, label: "WEB DESIGN", link: "/services/web-design" },
+    { icon: Code2, label: "DEVELOPMENT", link: "/services/development" },
+    { icon: Smartphone, label: "MOBILE APPS", link: "/services/mobile-apps" },
+    { icon: Cpu, label: "AI INTEGRATION", link: "/services/ai-integration" },
   ];
 
   const funFacts = [
@@ -86,19 +87,21 @@ const About = () => {
                 {whatIDo.map((item, index) => {
                   const Icon = item.icon;
                   return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      className="pro-card p-4 flex items-center gap-3 hover-scale cursor-pointer"
-                    >
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <Icon className="w-5 h-5 text-primary" />
-                      </div>
-                      <span className="text-sm font-medium text-foreground">{item.label}</span>
-                    </motion.div>
+                    <Link key={index} to={item.link}>
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 }}
+                        className="pro-card p-4 flex items-center gap-3 hover-scale cursor-pointer group"
+                        whileHover={{ scale: 1.02 }}
+                      >
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                          <Icon className="w-5 h-5 text-primary" />
+                        </div>
+                        <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{item.label}</span>
+                      </motion.div>
+                    </Link>
                   );
                 })}
               </div>
