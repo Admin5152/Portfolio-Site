@@ -2,6 +2,16 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Briefcase, Code2, Database, Smartphone, Globe, Cpu, Zap, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import eclStudio from "@/assets/ecl-studio.jpeg";
+import eclTeam from "@/assets/ecl-team.jpg";
+import eclPortrait from "@/assets/ecl-portrait.jpg";
 
 const ExperienceEcl = () => {
   const techStack = [
@@ -100,12 +110,33 @@ const ExperienceEcl = () => {
                 </p>
               </div>
 
-              {/* Image Placeholder */}
-              <div className="my-8 rounded-lg overflow-hidden border border-border bg-muted/30 aspect-video flex items-center justify-center">
-                <div className="text-center p-8">
-                  <Code2 className="w-12 h-12 text-muted-foreground/50 mx-auto mb-3" />
-                  <p className="text-sm text-muted-foreground">Workspace photo coming soon</p>
-                </div>
+              {/* Image Carousel */}
+              <div className="my-8">
+                <Carousel className="w-full max-w-2xl mx-auto">
+                  <CarouselContent>
+                    {[
+                      { src: eclTeam, alt: "ECL Team Photo" },
+                      { src: eclPortrait, alt: "Seth at ECL" },
+                      { src: eclStudio, alt: "ECL Studio Session" },
+                    ].map((image, index) => (
+                      <CarouselItem key={index}>
+                        <motion.div 
+                          className="rounded-lg overflow-hidden border border-border"
+                          whileHover={{ scale: 1.02 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <img 
+                            src={image.src} 
+                            alt={image.alt} 
+                            className="w-full h-80 object-cover"
+                          />
+                        </motion.div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-2" />
+                  <CarouselNext className="right-2" />
+                </Carousel>
               </div>
             </motion.div>
           </div>
