@@ -1,8 +1,12 @@
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import TestimonialForm from "./TestimonialForm";
+
+// Check if Supabase is configured
+const isSupabaseConfigured = () => {
+  return Boolean(import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY);
+};
 
 interface Testimonial {
   id: string;
@@ -16,17 +20,30 @@ interface Testimonial {
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [supabaseReady, setSupabaseReady] = useState(false);
 
   const fetchTestimonials = async () => {
-    const { data, error } = await supabase
-      .from("testimonials")
-      .select("*")
-      .order("created_at", { ascending: false });
+    if (!isSupabaseConfigured()) {
+      setIsLoading(false);
+      return;
+    }
 
-    if (error) {
-      console.error("Error fetching testimonials:", error);
-    } else {
-      setTestimonials(data || []);
+    try {
+      const { supabase } = await import("@/integrations/supabase/client");
+      setSupabaseReady(true);
+      
+      const { data, error } = await supabase
+        .from("testimonials")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error("Error fetching testimonials:", error);
+      } else {
+        setTestimonials(data || []);
+      }
+    } catch (error) {
+      console.error("Supabase not ready:", error);
     }
     setIsLoading(false);
   };
@@ -34,20 +51,30 @@ const Testimonials = () => {
   useEffect(() => {
     fetchTestimonials();
 
+    if (!isSupabaseConfigured()) return;
+
     // Subscribe to realtime updates
-    const channel = supabase
-      .channel("testimonials-changes")
-      .on(
-        "postgres_changes",
-        { event: "INSERT", schema: "public", table: "testimonials" },
-        (payload) => {
-          setTestimonials((prev) => [payload.new as Testimonial, ...prev]);
-        }
-      )
-      .subscribe();
+    let channel: ReturnType<typeof import("@/integrations/supabase/client").supabase.channel> | null = null;
+    
+    import("@/integrations/supabase/client").then(({ supabase }) => {
+      channel = supabase
+        .channel("testimonials-changes")
+        .on(
+          "postgres_changes",
+          { event: "INSERT", schema: "public", table: "testimonials" },
+          (payload) => {
+            setTestimonials((prev) => [payload.new as Testimonial, ...prev]);
+          }
+        )
+        .subscribe();
+    });
 
     return () => {
-      supabase.removeChannel(channel);
+      if (channel) {
+        import("@/integrations/supabase/client").then(({ supabase }) => {
+          supabase.removeChannel(channel!);
+        });
+      }
     };
   }, []);
 
@@ -171,22 +198,24 @@ const Testimonials = () => {
         )}
 
         {/* Submission Form */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-16"
-        >
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-orbitron font-bold text-foreground mb-2">
-              Worked with me?
-            </h3>
-            <p className="text-muted-foreground">
-              I'd love to hear about your experience!
+        {supabaseReady && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-16"
+          >
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-orbitron font-bold text-foreground mb-2">
+                Worked with me?
+              </h3>
+              <p className="text-muted-foreground">
+                I'd love to hear about your experience!
             </p>
           </div>
-          <TestimonialForm onSuccess={fetchTestimonials} />
-        </motion.div>
+            <TestimonialForm onSuccess={fetchTestimonials} />
+          </motion.div>
+        )}
       </div>
     </section>
   );

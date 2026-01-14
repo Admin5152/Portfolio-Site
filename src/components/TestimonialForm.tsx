@@ -1,21 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Send, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
-
+import type { SupabaseClient } from "@supabase/supabase-js";
 const TestimonialForm = ({ onSuccess }: { onSuccess?: () => void }) => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [rating, setRating] = useState(5);
+  const [supabaseClient, setSupabaseClient] = useState<SupabaseClient | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     role: "",
     text: "",
   });
+
+  useEffect(() => {
+    import("@/integrations/supabase/client").then(({ supabase }) => {
+      setSupabaseClient(supabase);
+    }).catch(console.error);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,10 +35,19 @@ const TestimonialForm = ({ onSuccess }: { onSuccess?: () => void }) => {
       return;
     }
 
+    if (!supabaseClient) {
+      toast({
+        title: "Not ready",
+        description: "Please try again in a moment.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
-      const { error } = await supabase.from("testimonials").insert({
+      const { error } = await supabaseClient.from("testimonials").insert({
         name: formData.name.trim(),
         role: formData.role.trim() || null,
         rating,
