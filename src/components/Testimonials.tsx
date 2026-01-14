@@ -1,6 +1,14 @@
 import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, MessageSquarePlus } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import TestimonialForm from "./TestimonialForm";
 
 // Check if Supabase is configured
@@ -21,6 +29,7 @@ const Testimonials = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [supabaseReady, setSupabaseReady] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const fetchTestimonials = async () => {
     if (!isSupabaseConfigured()) {
@@ -197,23 +206,38 @@ const Testimonials = () => {
           </div>
         )}
 
-        {/* Submission Form */}
+        {/* Add Comment Button */}
         {supabaseReady && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-16"
+            className="mt-12 text-center"
           >
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-orbitron font-bold text-foreground mb-2">
-                Worked with me?
-              </h3>
-              <p className="text-muted-foreground">
-                I'd love to hear about your experience!
+            <p className="text-muted-foreground mb-4">
+              Worked with me? I'd love to hear about your experience!
             </p>
-          </div>
-            <TestimonialForm onSuccess={fetchTestimonials} />
+            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+              <DialogTrigger asChild>
+                <Button size="lg" className="gap-2">
+                  <MessageSquarePlus className="w-5 h-5" />
+                  Add Comment
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle className="text-xl font-orbitron text-center">
+                    Share Your Experience
+                  </DialogTitle>
+                </DialogHeader>
+                <TestimonialForm 
+                  onSuccess={() => {
+                    fetchTestimonials();
+                    setIsDialogOpen(false);
+                  }} 
+                />
+              </DialogContent>
+            </Dialog>
           </motion.div>
         )}
       </div>
