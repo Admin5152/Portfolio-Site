@@ -15,6 +15,7 @@ import ServiceWebDesign from "./pages/ServiceWebDesign";
 import ServiceDevelopment from "./pages/ServiceDevelopment";
 import ServiceMobileApps from "./pages/ServiceMobileApps";
 import ServiceAI from "./pages/ServiceAI";
+import ProjectDetail from "./pages/ProjectDetail";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,8 @@ const App = () => (
         {/* Experience Pages */}
         <Route path="/experience/biscovs" element={<ExperienceBiscovs />} />
         <Route path="/experience/ecl" element={<ExperienceEcl />} />
+        {/* Project Pages */}
+        <Route path="/projects/:slug" element={<ProjectDetail />} />
         {/* Service Pages */}
         <Route path="/services/web-design" element={<ServiceWebDesign />} />
         <Route path="/services/development" element={<ServiceDevelopment />} />
