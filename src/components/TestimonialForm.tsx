@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { Send, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import type { SupabaseClient } from "@supabase/supabase-js";
+
 const TestimonialForm = ({ onSuccess }: { onSuccess?: () => void }) => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -77,104 +77,92 @@ const TestimonialForm = ({ onSuccess }: { onSuccess?: () => void }) => {
   };
 
   return (
-    <motion.form
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      onSubmit={handleSubmit}
-      className="pro-card p-6 max-w-xl mx-auto"
-    >
-      <h3 className="text-xl font-orbitron font-bold text-foreground mb-6 text-center">
-        Share Your Experience
-      </h3>
-
-      <div className="space-y-4">
-        {/* Name */}
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-1">
-            Your Name *
-          </label>
-          <Input
-            id="name"
-            placeholder="John Doe"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            maxLength={100}
-            required
-          />
-        </div>
-
-        {/* Role */}
-        <div>
-          <label htmlFor="role" className="block text-sm font-medium text-muted-foreground mb-1">
-            Your Role (optional)
-          </label>
-          <Input
-            id="role"
-            placeholder="CEO, Designer, Client..."
-            value={formData.role}
-            onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-            maxLength={100}
-          />
-        </div>
-
-        {/* Rating */}
-        <div>
-          <label className="block text-sm font-medium text-muted-foreground mb-2">
-            Rating *
-          </label>
-          <div className="flex gap-1">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <button
-                key={star}
-                type="button"
-                onClick={() => setRating(star)}
-                className="focus:outline-none transition-transform hover:scale-110"
-              >
-                <Star
-                  className={`w-7 h-7 ${
-                    star <= rating
-                      ? "fill-primary text-primary"
-                      : "text-muted-foreground/30"
-                  }`}
-                />
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Testimonial Text */}
-        <div>
-          <label htmlFor="text" className="block text-sm font-medium text-muted-foreground mb-1">
-            Your Testimonial *
-          </label>
-          <Textarea
-            id="text"
-            placeholder="Share your experience working with me..."
-            value={formData.text}
-            onChange={(e) => setFormData({ ...formData, text: e.target.value })}
-            rows={4}
-            maxLength={500}
-            required
-          />
-          <p className="text-xs text-muted-foreground mt-1">
-            {formData.text.length}/500 characters
-          </p>
-        </div>
-
-        {/* Submit Button */}
-        <Button type="submit" className="w-full gap-2" disabled={isSubmitting}>
-          {isSubmitting ? (
-            "Submitting..."
-          ) : (
-            <>
-              <Send className="w-4 h-4" />
-              Submit Testimonial
-            </>
-          )}
-        </Button>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Name */}
+      <div>
+        <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-1">
+          Your Name *
+        </label>
+        <Input
+          id="name"
+          placeholder="John Doe"
+          value={formData.name}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          maxLength={100}
+          required
+        />
       </div>
-    </motion.form>
+
+      {/* Role */}
+      <div>
+        <label htmlFor="role" className="block text-sm font-medium text-muted-foreground mb-1">
+          Your Role (optional)
+        </label>
+        <Input
+          id="role"
+          placeholder="CEO, Designer, Client..."
+          value={formData.role}
+          onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+          maxLength={100}
+        />
+      </div>
+
+      {/* Rating */}
+      <div>
+        <label className="block text-sm font-medium text-muted-foreground mb-2">
+          Rating *
+        </label>
+        <div className="flex gap-1">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <button
+              key={star}
+              type="button"
+              onClick={() => setRating(star)}
+              className="focus:outline-none transition-transform hover:scale-110"
+            >
+              <Star
+                className={`w-7 h-7 ${
+                  star <= rating
+                    ? "fill-primary text-primary"
+                    : "text-muted-foreground/30"
+                }`}
+              />
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Testimonial Text */}
+      <div>
+        <label htmlFor="text" className="block text-sm font-medium text-muted-foreground mb-1">
+          Your Testimonial *
+        </label>
+        <Textarea
+          id="text"
+          placeholder="Share your experience working with me..."
+          value={formData.text}
+          onChange={(e) => setFormData({ ...formData, text: e.target.value })}
+          rows={4}
+          maxLength={500}
+          required
+        />
+        <p className="text-xs text-muted-foreground mt-1">
+          {formData.text.length}/500 characters
+        </p>
+      </div>
+
+      {/* Submit Button */}
+      <Button type="submit" className="w-full gap-2" disabled={isSubmitting}>
+        {isSubmitting ? (
+          "Submitting..."
+        ) : (
+          <>
+            <Send className="w-4 h-4" />
+            Submit Testimonial
+          </>
+        )}
+      </Button>
+    </form>
   );
 };
 
