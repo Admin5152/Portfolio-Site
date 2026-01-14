@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link, useParams, Navigate } from "react-router-dom";
-import { ArrowLeft, ExternalLink, Github, Calendar, Lightbulb, Target, Wrench } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, Calendar, Lightbulb, Target, Wrench, ImageIcon, Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // Project data with full details
@@ -17,7 +17,8 @@ export const projectsData = [
     tech: ["React Native", "Firebase", "Google Maps API", "Expo", "Real-time Database"],
     category: "mobile",
     liveUrl: "https://www.linkedin.com/posts/sethcharlesagyeimensah5152_reactnative-mobiledevelopment-innovation-ugcPost-7390686995758387200-2dLk",
-    githubUrl: "https://github.com/Admin5152/TRACKER-78.git"
+    githubUrl: "https://github.com/Admin5152/TRACKER-78.git",
+    images: [] as string[], // Add your images here
   },
   {
     slug: "jarvis-chatbot",
@@ -31,7 +32,8 @@ export const projectsData = [
     tech: ["React Native", "Google Gemini API", "Expo", "Speech Recognition", "Text-to-Speech"],
     category: "ai",
     liveUrl: null,
-    githubUrl: null
+    githubUrl: null,
+    images: [] as string[],
   },
   {
     slug: "hermes-store",
@@ -45,7 +47,8 @@ export const projectsData = [
     tech: ["Django", "Firebase", "Google Maps", "PostgreSQL", "Bootstrap", "Stripe"],
     category: "web",
     liveUrl: null,
-    githubUrl: null
+    githubUrl: null,
+    images: [] as string[],
   },
   {
     slug: "recyclemate",
@@ -59,7 +62,8 @@ export const projectsData = [
     tech: ["React Native", "AI Vision", "Gemini API", "TensorFlow Lite", "Expo"],
     category: "ai",
     liveUrl: "https://admin5152.github.io/Recycling-guide-website./",
-    githubUrl: "https://github.com/Admin5152/Recruitment-System.git"
+    githubUrl: "https://github.com/Admin5152/Recruitment-System.git",
+    images: [] as string[],
   },
   {
     slug: "systa-systa",
@@ -73,7 +77,8 @@ export const projectsData = [
     tech: ["React", "CSS", "Responsive Design", "Framer Motion", "Vite"],
     category: "web",
     liveUrl: "https://admin5152.github.io/systa-style-shop/",
-    githubUrl: "https://github.com/Admin5152/systa-style-shop.git"
+    githubUrl: "https://github.com/Admin5152/systa-style-shop.git",
+    images: [] as string[],
   },
   {
     slug: "amanabi-stock-tracker",
@@ -87,9 +92,34 @@ export const projectsData = [
     tech: ["React", "Vite", "Chart.js", "Financial APIs", "TailwindCSS"],
     category: "web",
     liveUrl: "https://admin5152.github.io/amanabi-stock-tracker/",
-    githubUrl: "https://github.com/Admin5152/amanabi-stock-tracker"
+    githubUrl: "https://github.com/Admin5152/amanabi-stock-tracker",
+    images: [] as string[],
   }
 ];
+
+// Animation variants for smoother transitions
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+} as const;
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  },
+} as const;
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -100,175 +130,282 @@ const ProjectDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Back Navigation */}
-      <div className="fixed top-6 left-6 z-50">
-        <Link to="/#projects">
-          <Button variant="outline" size="sm" className="gap-2">
-            <ArrowLeft className="w-4 h-4" />
-            Back to Portfolio
-          </Button>
-        </Link>
-      </div>
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={slug}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="min-h-screen bg-background"
+      >
+        {/* Back Navigation */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3 }}
+          className="fixed top-6 left-6 z-50"
+        >
+          <Link to="/#projects">
+            <Button variant="outline" size="sm" className="gap-2 backdrop-blur-sm bg-background/80 hover:bg-background">
+              <ArrowLeft className="w-4 h-4" />
+              Back to Portfolio
+            </Button>
+          </Link>
+        </motion.div>
 
-      {/* Hero Section */}
-      <section className="pt-24 pb-12 relative overflow-hidden">
-        <div className="absolute inset-0 grid-background opacity-20" />
-        
-        <div className="container mx-auto px-4 relative z-10">
+        {/* Hero Section */}
+        <section className="pt-24 pb-12 relative overflow-hidden">
+          <div className="absolute inset-0 grid-background opacity-20" />
+          
+          {/* Animated background glow */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <span className="text-8xl mb-6 block">{project.icon}</span>
-            <h1 className="text-4xl md:text-5xl font-orbitron font-bold mb-4">
-              <span className="gradient-text">{project.title}</span>
-            </h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              {project.description}
-            </p>
-            
-            {/* Action Buttons */}
-            <div className="flex justify-center gap-4 flex-wrap">
-              {project.liveUrl && (
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                  <Button className="gap-2">
-                    <ExternalLink className="w-4 h-4" />
-                    View Live Site
-                  </Button>
-                </a>
-              )}
-              {project.githubUrl && (
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" className="gap-2">
-                    <Github className="w-4 h-4" />
-                    View Source Code
-                  </Button>
-                </a>
-              )}
-            </div>
-          </motion.div>
-        </div>
-      </section>
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 0.3 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
+          />
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="text-center max-w-4xl mx-auto"
+            >
+              <motion.span
+                variants={itemVariants}
+                className="text-8xl mb-6 block filter drop-shadow-lg"
+                whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
+                transition={{ duration: 0.3 }}
+              >
+                {project.icon}
+              </motion.span>
+              <motion.h1
+                variants={itemVariants}
+                className="text-4xl md:text-5xl font-orbitron font-bold mb-4"
+              >
+                <span className="gradient-text">{project.title}</span>
+              </motion.h1>
+              <motion.p
+                variants={itemVariants}
+                className="text-xl text-muted-foreground mb-8"
+              >
+                {project.description}
+              </motion.p>
+              
+              {/* Action Buttons */}
+              <motion.div
+                variants={itemVariants}
+                className="flex justify-center gap-4 flex-wrap"
+              >
+                {project.liveUrl && (
+                  <motion.a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button className="gap-2">
+                      <ExternalLink className="w-4 h-4" />
+                      View Live Site
+                    </Button>
+                  </motion.a>
+                )}
+                {project.githubUrl && (
+                  <motion.a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button variant="outline" className="gap-2">
+                      <Github className="w-4 h-4" />
+                      View Source Code
+                    </Button>
+                  </motion.a>
+                )}
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
 
-      {/* Content Section */}
-      <section className="py-12">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto grid gap-8">
-            {/* Full Description */}
+        {/* Content Section */}
+        <section className="py-12">
+          <div className="container mx-auto px-4">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              className="max-w-4xl mx-auto grid gap-8"
+            >
+              {/* Full Description */}
+              <motion.div
+                variants={itemVariants}
+                className="pro-card p-6 hover:border-primary/50 transition-colors duration-300"
+              >
+                <h2 className="text-xl font-orbitron font-bold text-foreground mb-4">About This Project</h2>
+                <p className="text-muted-foreground leading-relaxed">{project.fullDescription}</p>
+              </motion.div>
+
+              {/* Project Gallery Section */}
+              <motion.div
+                variants={itemVariants}
+                className="pro-card p-6 hover:border-primary/50 transition-colors duration-300"
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                    <Camera className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-orbitron font-bold text-foreground">Project Gallery</h3>
+                </div>
+                
+                {project.images && project.images.length > 0 ? (
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    {project.images.map((image, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: index * 0.1 }}
+                        whileHover={{ scale: 1.05 }}
+                        className="aspect-video rounded-lg overflow-hidden border border-border"
+                      >
+                        <img
+                          src={image}
+                          alt={`${project.title} screenshot ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
+                ) : (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="grid grid-cols-2 md:grid-cols-3 gap-4"
+                  >
+                    {[1, 2, 3].map((i) => (
+                      <div
+                        key={i}
+                        className="aspect-video rounded-lg border-2 border-dashed border-border bg-muted/30 flex flex-col items-center justify-center gap-2"
+                      >
+                        <ImageIcon className="w-8 h-8 text-muted-foreground/50" />
+                        <span className="text-xs text-muted-foreground">Coming Soon</span>
+                      </div>
+                    ))}
+                  </motion.div>
+                )}
+              </motion.div>
+
+              {/* Info Cards Grid */}
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Idea Origin */}
+                <motion.div
+                  variants={itemVariants}
+                  whileHover={{ y: -5 }}
+                  className="pro-card p-6 hover:border-primary/50 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                      <Lightbulb className="w-5 h-5 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-orbitron font-bold text-foreground">How It Started</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{project.ideaOrigin}</p>
+                </motion.div>
+
+                {/* Purpose */}
+                <motion.div
+                  variants={itemVariants}
+                  whileHover={{ y: -5 }}
+                  className="pro-card p-6 hover:border-primary/50 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-lg bg-secondary/20 flex items-center justify-center">
+                      <Target className="w-5 h-5 text-secondary" />
+                    </div>
+                    <h3 className="text-lg font-orbitron font-bold text-foreground">Purpose</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{project.purpose}</p>
+                </motion.div>
+
+                {/* Time Period */}
+                <motion.div
+                  variants={itemVariants}
+                  whileHover={{ y: -5 }}
+                  className="pro-card p-6 hover:border-primary/50 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                      <Calendar className="w-5 h-5 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-orbitron font-bold text-foreground">Timeline</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm">{project.timePeriod}</p>
+                </motion.div>
+
+                {/* Tech Stack */}
+                <motion.div
+                  variants={itemVariants}
+                  whileHover={{ y: -5 }}
+                  className="pro-card p-6 hover:border-primary/50 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-lg bg-secondary/20 flex items-center justify-center">
+                      <Wrench className="w-5 h-5 text-secondary" />
+                    </div>
+                    <h3 className="text-lg font-orbitron font-bold text-foreground">Tech Stack</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((tech, index) => (
+                      <motion.span
+                        key={index}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.5 + index * 0.05 }}
+                        whileHover={{ scale: 1.1 }}
+                        className="px-3 py-1 text-xs bg-muted text-foreground rounded-full border border-border hover:border-primary/50 transition-colors cursor-default"
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Footer CTA */}
+        <section className="py-12 border-t border-border">
+          <div className="container mx-auto px-4 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="pro-card p-6"
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
             >
-              <h2 className="text-xl font-orbitron font-bold text-foreground mb-4">About This Project</h2>
-              <p className="text-muted-foreground leading-relaxed">{project.fullDescription}</p>
+              <h3 className="text-2xl font-orbitron font-bold text-foreground mb-4">
+                Interested in working together?
+              </h3>
+              <p className="text-muted-foreground mb-6">
+                Let's create something amazing for your next project.
+              </p>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link to="/#contact">
+                  <Button size="lg" className="gap-2">
+                    Get In Touch
+                  </Button>
+                </Link>
+              </motion.div>
             </motion.div>
-
-            {/* Info Cards Grid */}
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Idea Origin */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="pro-card p-6"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                    <Lightbulb className="w-5 h-5 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-orbitron font-bold text-foreground">How It Started</h3>
-                </div>
-                <p className="text-muted-foreground text-sm leading-relaxed">{project.ideaOrigin}</p>
-              </motion.div>
-
-              {/* Purpose */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="pro-card p-6"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-secondary/20 flex items-center justify-center">
-                    <Target className="w-5 h-5 text-secondary" />
-                  </div>
-                  <h3 className="text-lg font-orbitron font-bold text-foreground">Purpose</h3>
-                </div>
-                <p className="text-muted-foreground text-sm leading-relaxed">{project.purpose}</p>
-              </motion.div>
-
-              {/* Time Period */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="pro-card p-6"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                    <Calendar className="w-5 h-5 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-orbitron font-bold text-foreground">Timeline</h3>
-                </div>
-                <p className="text-muted-foreground text-sm">{project.timePeriod}</p>
-              </motion.div>
-
-              {/* Tech Stack */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="pro-card p-6"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-secondary/20 flex items-center justify-center">
-                    <Wrench className="w-5 h-5 text-secondary" />
-                  </div>
-                  <h3 className="text-lg font-orbitron font-bold text-foreground">Tech Stack</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 text-xs bg-muted text-foreground rounded-full border border-border"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Footer CTA */}
-      <section className="py-12 border-t border-border">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-          >
-            <h3 className="text-2xl font-orbitron font-bold text-foreground mb-4">
-              Interested in working together?
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              Let's create something amazing for your next project.
-            </p>
-            <Link to="/#contact">
-              <Button size="lg" className="gap-2">
-                Get In Touch
-              </Button>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
