@@ -4,7 +4,9 @@ import { ArrowLeft, GraduationCap, Users, Smartphone, Rocket, Calendar, BookOpen
 import { Button } from "@/components/ui/button";
 import matriculationImg from "@/assets/knust-matriculation.jpeg";
 import mobileDevImg from "@/assets/knust-mobile-dev.jpeg";
-import tracker78Img from "@/assets/tracker78-team.jpeg";
+import tracker78Img from "@/assets/tracker78-cssweek.jpeg";
+import studyCultImg from "@/assets/study-cult-team.jpeg";
+import level300Img from "@/assets/level300-portrait.jpg";
 
 const EducationKnust = () => {
   const timelineEvents = [
@@ -29,7 +31,8 @@ const EducationKnust = () => {
       break down complex concepts together, and push each other to excel. It wasn't just about grades; it was about
       building a support system. The Study Cult became a second family.`,
       highlights: ["Collaborative Learning", "Peer Teaching", "Building Community"],
-      imagePlaceholder: true,
+      image: studyCultImg,
+      imageAlt: "The Study Cult team",
     },
     {
       year: "2024",
@@ -53,7 +56,7 @@ const EducationKnust = () => {
       mine. And shipping it gave me the confidence to take on bigger challenges.`,
       highlights: ["Full App Development Cycle", "User Testing", "Iterative Design"],
       image: tracker78Img,
-      imageAlt: "The Tracker 78 team",
+      imageAlt: "The Tracker 78 team at CSS Week",
     },
     {
       year: "2025",
@@ -64,7 +67,8 @@ const EducationKnust = () => {
       integration, web development with React, and backend systems with Django. Every day brings new challenges,
       and I embrace them all.`,
       highlights: ["AI/ML Integration", "Full-Stack Development", "Leadership Roles"],
-      imagePlaceholder: true,
+      image: level300Img,
+      imageAlt: "Seth in Level 300",
     },
     {
       year: "Future",
@@ -175,14 +179,14 @@ const EducationKnust = () => {
                       {/* Image */}
                       {event.image ? (
                         <motion.div 
-                          className="mb-6 rounded-lg overflow-hidden border border-border"
+                          className="mb-6 rounded-lg overflow-hidden border border-border max-w-md"
                           whileHover={{ scale: 1.02 }}
                           transition={{ duration: 0.3 }}
                         >
                           <img 
                             src={event.image} 
                             alt={event.imageAlt} 
-                            className="w-full h-auto object-cover"
+                            className="w-full h-auto max-h-72 object-cover"
                           />
                         </motion.div>
                       ) : event.imagePlaceholder && (
