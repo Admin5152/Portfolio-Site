@@ -99,22 +99,6 @@ const Sidebar = () => {
         })}
       </nav>
 
-      {/* Timeline Dots */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col gap-4">
-        {navItems.map((item, index) => (
-          <motion.div
-            key={item.id}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              activeSection === item.id
-                ? "bg-primary scale-150"
-                : "bg-border hover:bg-primary/50"
-            }`}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.5 + index * 0.1 }}
-          />
-        ))}
-      </div>
     </motion.aside>
   );
 };
