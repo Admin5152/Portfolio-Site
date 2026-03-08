@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Download, Eye, GraduationCap, Briefcase, Code, Award, ChevronRight } from "lucide-react";
+import WallOfFame from "@/components/WallOfFame";
 
 const Resume = () => {
   const education = [
@@ -214,6 +215,11 @@ const Resume = () => {
               </p>
             </motion.div>
           </div>
+        </div>
+
+        {/* Wall of Fame */}
+        <div className="mt-12">
+          <WallOfFame />
         </div>
       </div>
     </section>
