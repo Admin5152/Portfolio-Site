@@ -216,6 +216,11 @@ const Resume = () => {
             </motion.div>
           </div>
         </div>
+
+        {/* Wall of Fame */}
+        <div className="mt-12">
+          <WallOfFame />
+        </div>
       </div>
     </section>
   );
