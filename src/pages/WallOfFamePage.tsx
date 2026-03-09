@@ -55,9 +55,13 @@ const WallOfFamePage = () => {
                 {/* Plaque accent */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-1 bg-primary/40 rounded-b group-hover:bg-primary transition-colors" />
 
-                <div className="w-12 h-12 mb-4 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <Award className="w-6 h-6 text-primary" />
-                </div>
+                {cert.imageUrl ? (
+                  <img src={cert.imageUrl} alt={cert.title} className="w-full h-24 object-cover rounded-lg mb-3" />
+                ) : (
+                  <div className="w-12 h-12 mb-4 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <Award className="w-6 h-6 text-primary" />
+                  </div>
+                )}
 
                 <h4 className="text-sm font-semibold text-foreground text-center leading-tight mb-2 group-hover:text-primary transition-colors line-clamp-2">
                   {cert.title}
@@ -93,9 +97,13 @@ const WallOfFamePage = () => {
             >
               <div className="bg-card border-2 border-primary/30 rounded-xl overflow-hidden shadow-2xl">
                 <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 p-6 text-center border-b border-primary/20">
-                  <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-primary/20 flex items-center justify-center">
-                    <Award className="w-8 h-8 text-primary" />
-                  </div>
+                  {selected.imageUrl ? (
+                    <img src={selected.imageUrl} alt={selected.title} className="w-full max-h-48 object-contain rounded-lg mx-auto mb-3" />
+                  ) : (
+                    <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-primary/20 flex items-center justify-center">
+                      <Award className="w-8 h-8 text-primary" />
+                    </div>
+                  )}
                   <p className="text-xs text-primary font-orbitron tracking-[0.3em] uppercase mb-1">Certificate of Achievement</p>
                   <h3 className="text-xl font-orbitron font-bold text-foreground">{selected.title}</h3>
                 </div>
