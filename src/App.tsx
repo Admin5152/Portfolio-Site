@@ -35,6 +35,8 @@ const App = () => (
         <Route path="/experience/ecl" element={<ExperienceEcl />} />
         {/* Project Pages */}
         <Route path="/projects/:slug" element={<ProjectDetail />} />
+        {/* Wall of Fame */}
+        <Route path="/wall-of-fame" element={<WallOfFamePage />} />
         {/* Service Pages */}
         <Route path="/services/web-design" element={<ServiceWebDesign />} />
         <Route path="/services/development" element={<ServiceDevelopment />} />
