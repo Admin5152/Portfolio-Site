@@ -14,10 +14,10 @@ export interface Certificate {
 
 export const certificates: Certificate[] = [
   {
-    title: "Certificate of Completion",
-    issuer: "Uploaded Certificate",
-    year: "2025",
-    description: "Professional development certificate earned during 3rd year.",
+    title: "AI 150: Fundamentals of Responsible AI for All",
+    issuer: "KNUST AI Courses Coordinating Office",
+    year: "2026",
+    description: "Completed the AI 150 Fundamentals of Responsible Artificial Intelligence (AI) for All course, awarded January 28, 2026.",
     downloadUrl: "/certificates/CERTIFICATE_OF_COMPLETION.pdf",
   },
   {
