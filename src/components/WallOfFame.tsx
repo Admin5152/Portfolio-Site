@@ -37,6 +37,27 @@ export const certificates: Certificate[] = [
     imageUrl: "/certificates/cybersecurity-ibm.png",
   },
   {
+    title: "Foundations of Cybersecurity",
+    issuer: "Google / Coursera",
+    year: "2025",
+    description: "An online non-credit course authorized by Google and offered through Coursera, completed December 24, 2025.",
+    imageUrl: "/certificates/foundations-cybersecurity-google.png",
+  },
+  {
+    title: "Play It Safe: Manage Security Risks",
+    issuer: "Google / Coursera",
+    year: "2025",
+    description: "An online non-credit course authorized by Google and offered through Coursera, completed December 26, 2025.",
+    imageUrl: "/certificates/play-it-safe-google.png",
+  },
+  {
+    title: "Connect and Protect: Networks and Network Security",
+    issuer: "Google / Coursera",
+    year: "2025",
+    description: "An online non-credit course authorized by Google and offered through Coursera, completed December 31, 2025.",
+    imageUrl: "/certificates/connect-protect-google.png",
+  },
+  {
     title: "Full-Stack Web Development",
     issuer: "Coursera / Meta",
     year: "2025",
