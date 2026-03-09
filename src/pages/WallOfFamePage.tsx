@@ -55,9 +55,13 @@ const WallOfFamePage = () => {
                 {/* Plaque accent */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-1 bg-primary/40 rounded-b group-hover:bg-primary transition-colors" />
 
-                <div className="w-12 h-12 mb-4 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <Award className="w-6 h-6 text-primary" />
-                </div>
+                {cert.imageUrl ? (
+                  <img src={cert.imageUrl} alt={cert.title} className="w-full h-24 object-cover rounded-lg mb-3" />
+                ) : (
+                  <div className="w-12 h-12 mb-4 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <Award className="w-6 h-6 text-primary" />
+                  </div>
+                )}
 
                 <h4 className="text-sm font-semibold text-foreground text-center leading-tight mb-2 group-hover:text-primary transition-colors line-clamp-2">
                   {cert.title}
