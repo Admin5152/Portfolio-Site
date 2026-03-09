@@ -9,6 +9,7 @@ export interface Certificate {
   issuer: string;
   year: string;
   description: string;
+  imageUrl?: string;
   downloadUrl?: string;
 }
 
@@ -18,7 +19,22 @@ export const certificates: Certificate[] = [
     issuer: "KNUST AI Courses Coordinating Office",
     year: "2026",
     description: "Completed the AI 150 Fundamentals of Responsible Artificial Intelligence (AI) for All course, awarded January 28, 2026.",
+    imageUrl: "/certificates/ai-150-knust.png",
     downloadUrl: "/certificates/CERTIFICATE_OF_COMPLETION.pdf",
+  },
+  {
+    title: "Cloud Computing Fundamentals",
+    issuer: "IBM SkillsBuild",
+    year: "2026",
+    description: "Successfully satisfied the requirements for Cloud Computing Fundamentals, issued January 30, 2026 by IBM SkillsBuild.",
+    imageUrl: "/certificates/cloud-computing-ibm.png",
+  },
+  {
+    title: "Cybersecurity Fundamentals",
+    issuer: "IBM SkillsBuild",
+    year: "2026",
+    description: "Successfully satisfied the requirements for Cybersecurity Fundamentals, issued February 3, 2026 by IBM SkillsBuild.",
+    imageUrl: "/certificates/cybersecurity-ibm.png",
   },
   {
     title: "Full-Stack Web Development",
