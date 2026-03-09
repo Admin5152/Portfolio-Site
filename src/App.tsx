@@ -16,6 +16,7 @@ import ServiceDevelopment from "./pages/ServiceDevelopment";
 import ServiceMobileApps from "./pages/ServiceMobileApps";
 import ServiceAI from "./pages/ServiceAI";
 import ProjectDetail from "./pages/ProjectDetail";
+import WallOfFamePage from "./pages/WallOfFamePage";
 
 const queryClient = new QueryClient();
 
