@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Globe, Palette, Layout, Monitor, Figma, Layers, Eye, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import webdesign1 from "@/assets/webdesign-1.png";
+import webdesign2 from "@/assets/webdesign-2.png";
+import webdesign3 from "@/assets/webdesign-3.png";
 
 const ServiceWebDesign = () => {
   const process = [
@@ -119,12 +122,24 @@ const ServiceWebDesign = () => {
                 </p>
               </div>
 
-              {/* Image Placeholder */}
-              <div className="my-8 rounded-lg overflow-hidden border border-border bg-muted/30 aspect-video flex items-center justify-center">
-                <div className="text-center p-8">
-                  <Monitor className="w-12 h-12 text-muted-foreground/50 mx-auto mb-3" />
-                  <p className="text-sm text-muted-foreground">Design showcase coming soon</p>
-                </div>
+              {/* Design Showcase */}
+              <div className="my-8 grid gap-4 md:grid-cols-2">
+                {[
+                  { src: webdesign1, alt: "Welcome hero design — recruitment portal" },
+                  { src: webdesign2, alt: "Blackbox e-commerce homepage design" },
+                  { src: webdesign3, alt: "Personal portfolio hero design" },
+                ].map((img, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className={`rounded-lg overflow-hidden border border-border hover-scale ${i === 2 ? "md:col-span-2" : ""}`}
+                  >
+                    <img src={img.src} alt={img.alt} className="w-full h-full object-cover" loading="lazy" />
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           </div>
