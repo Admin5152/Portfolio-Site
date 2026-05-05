@@ -71,7 +71,7 @@ const ExperienceBiscovs = () => {
             </div>
             
             <h1 className="text-4xl md:text-6xl font-orbitron font-bold mb-6">
-              Sales Associate at <span className="gradient-text">Biscovs</span>
+              Sales Associate at <span className="gradient-text">Boscov's</span>
             </h1>
             
             <p className="text-lg text-muted-foreground leading-relaxed">
