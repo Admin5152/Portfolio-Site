@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Briefcase, Users, TrendingUp, MessageSquare, Clock, Award, Heart, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import boscovsStorefront from "@/assets/boscovs-storefront.png";
 
 const ExperienceBiscovs = () => {
   const lessons = [
@@ -70,7 +71,7 @@ const ExperienceBiscovs = () => {
             </div>
             
             <h1 className="text-4xl md:text-6xl font-orbitron font-bold mb-6">
-              Sales Associate at <span className="gradient-text">Biscovs</span>
+              Sales Associate at <span className="gradient-text">Boscov's</span>
             </h1>
             
             <p className="text-lg text-muted-foreground leading-relaxed">
@@ -93,7 +94,7 @@ const ExperienceBiscovs = () => {
               <h2 className="text-2xl font-orbitron font-semibold text-foreground mb-6">The Beginning</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  In 2024, I took my first step into the professional world as a Sales Associate at Biscovs.
+                  In 2024, I took my first step into the professional world as a Sales Associate at Boscov's.
                   It wasn't a tech job, but it was exactly what I needed at that point in my journey.
                 </p>
                 <p>
@@ -102,12 +103,14 @@ const ExperienceBiscovs = () => {
                 </p>
               </div>
 
-              {/* Image Placeholder */}
-              <div className="my-8 rounded-lg overflow-hidden border border-border bg-muted/30 aspect-video flex items-center justify-center">
-                <div className="text-center p-8">
-                  <Briefcase className="w-12 h-12 text-muted-foreground/50 mx-auto mb-3" />
-                  <p className="text-sm text-muted-foreground">Photo from Biscovs coming soon</p>
-                </div>
+              {/* Storefront Image */}
+              <div className="my-8 rounded-lg overflow-hidden border border-border">
+                <img
+                  src={boscovsStorefront}
+                  alt="Boscov's storefront where I worked as a Sales Associate"
+                  className="w-full h-auto object-cover"
+                  loading="lazy"
+                />
               </div>
             </motion.div>
 

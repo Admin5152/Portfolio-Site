@@ -2,6 +2,11 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, GraduationCap, Users, Smartphone, Rocket, Calendar, BookOpen, Code2, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import matriculationImg from "@/assets/knust-matriculation.jpeg";
+import mobileDevImg from "@/assets/knust-mobile-dev.jpeg";
+import tracker78Img from "@/assets/tracker78-cssweek.jpeg";
+import studyCultImg from "@/assets/study-cult-team.jpeg";
+import level300Img from "@/assets/level300-portrait.jpg";
 
 const EducationKnust = () => {
   const timelineEvents = [
@@ -14,7 +19,8 @@ const EducationKnust = () => {
       As a fresh Computer Science student, I was both nervous and excited. The first semester was a whirlwind of 
       adapting to university life, understanding algorithms, and learning the fundamentals that would shape my journey.`,
       highlights: ["Introduction to Programming", "Discrete Mathematics", "Finding My Rhythm"],
-      imagePlaceholder: true,
+      image: matriculationImg,
+      imageAlt: "Matriculation day at KNUST",
     },
     {
       year: "2023",
@@ -25,7 +31,8 @@ const EducationKnust = () => {
       break down complex concepts together, and push each other to excel. It wasn't just about grades; it was about
       building a support system. The Study Cult became a second family.`,
       highlights: ["Collaborative Learning", "Peer Teaching", "Building Community"],
-      imagePlaceholder: true,
+      image: studyCultImg,
+      imageAlt: "The Study Cult team",
     },
     {
       year: "2024",
@@ -36,7 +43,8 @@ const EducationKnust = () => {
       building small apps, breaking things, fixing them, and learning from every error message. The satisfaction of
       seeing my code run on an actual phone was unmatched.`,
       highlights: ["React Native Deep Dive", "Firebase Integration", "UI/UX Fundamentals"],
-      imagePlaceholder: true,
+      image: mobileDevImg,
+      imageAlt: "Working on mobile development projects with classmates",
     },
     {
       year: "2024",
@@ -47,7 +55,8 @@ const EducationKnust = () => {
       state management to local storage, from user authentication to push notifications. It wasn't perfect, but it was
       mine. And shipping it gave me the confidence to take on bigger challenges.`,
       highlights: ["Full App Development Cycle", "User Testing", "Iterative Design"],
-      imagePlaceholder: true,
+      image: tracker78Img,
+      imageAlt: "The Tracker 78 team at CSS Week",
     },
     {
       year: "2025",
@@ -58,7 +67,8 @@ const EducationKnust = () => {
       integration, web development with React, and backend systems with Django. Every day brings new challenges,
       and I embrace them all.`,
       highlights: ["AI/ML Integration", "Full-Stack Development", "Leadership Roles"],
-      imagePlaceholder: true,
+      image: level300Img,
+      imageAlt: "Seth in Level 300",
     },
     {
       year: "Future",
@@ -166,8 +176,20 @@ const EducationKnust = () => {
                         {event.content}
                       </p>
 
-                      {/* Image Placeholder */}
-                      {event.imagePlaceholder && (
+                      {/* Image */}
+                      {event.image ? (
+                        <motion.div 
+                          className="mb-6 rounded-lg overflow-hidden border border-border max-w-md"
+                          whileHover={{ scale: 1.02 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <img 
+                            src={event.image} 
+                            alt={event.imageAlt} 
+                            className="w-full h-auto max-h-72 object-cover"
+                          />
+                        </motion.div>
+                      ) : event.imagePlaceholder && (
                         <div className="mb-6 rounded-lg overflow-hidden border border-border bg-muted/30 aspect-video flex items-center justify-center">
                           <div className="text-center p-8">
                             <Code2 className="w-12 h-12 text-muted-foreground/50 mx-auto mb-3" />
