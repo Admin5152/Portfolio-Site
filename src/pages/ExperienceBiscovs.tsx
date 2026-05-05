@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Briefcase, Users, TrendingUp, MessageSquare, Clock, Award, Heart, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import boscovsStorefront from "@/assets/boscovs-storefront.png";
 
 const ExperienceBiscovs = () => {
   const lessons = [
